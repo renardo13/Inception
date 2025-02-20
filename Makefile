@@ -1,15 +1,39 @@
-all : up
+# Makefile for Docker Compose commands
 
-# docker-compose -f if to build every image of the different services
-# -d is to build the images and execute the docker file in background
-up :
-    docker-compose -f ./srcs/docker-compose.yml up -d
+COMPOSE_FILE = ./srcs/docker-compose.yml
 
-down :
-    docker-compose ./srcs/docker-compose.yml down
+.PHONY: all up down start stop restart logs build clean
 
-start :
-    docker-compose ./srcs/docker-compose/yml start
+all: up
 
-stop : 
-	docker-compose -f ./srcs/docker-compose.yml stop
+# Build and start services in detached mode
+up:
+	docker-compose -f $(COMPOSE_FILE) up -d
+
+# Stop and remove services
+down:
+	docker-compose -f $(COMPOSE_FILE) down
+
+# Start already created containers
+start:
+	docker-compose -f $(COMPOSE_FILE) start
+
+# Stop running containers
+stop:
+	docker-compose -f $(COMPOSE_FILE) stop
+
+# Restart services
+restart:
+	docker-compose -f $(COMPOSE_FILE) restart
+
+# View logs
+logs:
+	docker-compose -f $(COMPOSE_FILE) logs -f
+
+# Build or rebuild services
+build:
+	docker-compose -f $(COMPOSE_FILE) build
+
+# Clean: stop and remove services and volumes
+clean:
+	docker-compose -f $(COMPOSE_FILE) down --volumes --remove-orphans
