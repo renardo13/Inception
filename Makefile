@@ -1,6 +1,6 @@
 # Makefile for Docker Compose commands
 
-COMPOSE_FILE = ./srcs/docker-compose.yml
+COMPOSE_FILE = docker-compose.yml
 
 .PHONY: all up down start stop restart logs build clean
 
