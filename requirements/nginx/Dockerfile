@@ -1,10 +1,10 @@
 # Description: Nginx Dockerfile
 
 # pull the base image
-FROM debian:bullseye
+FROM debian:buster
 
 # update and upgrade the system
-RUN apt-get update && apt-get upgrade -y
+RUN apt-get update -y && apt-get upgrade -y
 
 # # install the required packages
 RUN apt-get install -y nginx openssl
