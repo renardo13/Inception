@@ -1,7 +1,7 @@
 # Description: Nginx Dockerfile
 
 # pull the base image
-FROM debian:buster
+FROM debian:bullseye
 
 # update and upgrade the system
 RUN apt-get update -y && apt-get upgrade -y
@@ -14,7 +14,7 @@ RUN mkdir -p /etc/nginx/ssl
 
 # generate the ssl certificate
 RUN openssl req -x509 -nodes -out /etc/nginx/ssl/inception.crt -keyout \
-    /etc/nginx/ssl/inception.key -subj "/C=MO/ST=KH/L=KH/O=42/OU=42/CN=domain_name.fr/UID=admin_name"
+    /etc/nginx/ssl/inception.key -subj "/C=FR/ST=IDF/L=FR/O=42/OU=42/CN=melmarti.42.fr/UID=melmarti"
 
 # copy the nginx configuration file
 COPY ./conf/nginx.conf /etc/nginx/nginx.conf
